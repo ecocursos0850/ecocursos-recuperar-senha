@@ -1,14 +1,19 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
+import { RouterOutlet } from '@angular/router';
+import Toastify from 'toastify-js';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RecuperarSenhaService } from './services/recuperar-senha.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, ReactiveFormsModule, FormsModule],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [RecuperarSenhaService]
+  styleUrl: './app.component.css',
+  providers: [HttpClientModule]
 })
 export class AppComponent {
   
@@ -36,7 +41,7 @@ export class AppComponent {
       next: () => {
         Swal.fire({
           title: "Senha alterada com sucesso",
-          text: "Nova senha: 123@@Mudar",
+          text: "Nova senha: 123456",
           icon: "success"
         });
       },

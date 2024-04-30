@@ -41,7 +41,7 @@ export class AppComponent {
       next: () => {
         Swal.fire({
           title: "Senha alterada com sucesso",
-          text: "Nova senha: 123456",
+          text: "Nova senha: 123@@Mudar",
           icon: "success"
         });
       },

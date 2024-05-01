@@ -1,23 +1,16 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-import Toastify from 'toastify-js';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RecuperarSenhaService } from './services/recuperar-senha.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet, ReactiveFormsModule, FormsModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
-  providers: [HttpClientModule]
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   
-  form!: FormGroup;
+  form: FormGroup;
 
   constructor(private service: RecuperarSenhaService) {
     this.form = new FormGroup({
@@ -45,7 +38,13 @@ export class AppComponent {
           icon: "success"
         });
       },
-      error: (err) => window.alert(err.error.message)
+      error: (err) => {
+        Swal.fire({
+          title: "Erro ao alterar senha",
+          text: err.error.message,
+          icon: "error"
+        });
+      }
     });
   }
 

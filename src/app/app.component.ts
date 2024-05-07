@@ -22,7 +22,7 @@ export class AppComponent {
   constructor(private service: RecuperarSenhaService) {
     this.form = new FormGroup({
       cpf: new FormControl('', Validators.required),
-      dataNascimento: new FormControl('', Validators.required)
+      email: new FormControl('', Validators.required)
     });
   }
 
@@ -30,13 +30,11 @@ export class AppComponent {
     return this.form.get("cpf");
   }
 
-  get dataNascimento() {
-    return this.form.get("dataNascimento");
+  get email() {
+    return this.form.get("email");
   }
 
   onSubmit = () => {
-    this.dataNascimento?.setValue(this.dataNascimento?.value + "T00:00:00");
-    console.log(this.dataNascimento?.value);
     this.service.recuperarSenha(this.form.value).subscribe({
       next: () => {
         Swal.fire({
